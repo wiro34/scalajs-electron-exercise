@@ -1292,18 +1292,6 @@ function $s_Lakka_actor_Actor$class__setActorFields__Lakka_actor_Actor__Lakka_ac
   $$this.akka$actor$Actor$$$undcontext$und$eq__Lakka_actor_ActorContext__V(context);
   $$this.akka$actor$Actor$$$undself$und$eq__Lakka_actor_ActorRef__V(self)
 }
-function $s_Lakka_actor_Actor$class__preRestart__Lakka_actor_Actor__jl_Throwable__s_Option__V($$this, reason, message) {
-  var this$1 = $$this.akka$actor$Actor$$$undcontext__Lakka_actor_ActorContext();
-  this$1.akka$actor$dungeon$Children$$childrenRefs$1.children__sci_Iterable().foreach__F1__V(new $c_sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
-    return (function(child$2) {
-      var child = $as_Lakka_actor_ActorRef(child$2);
-      var this$2 = arg$outer.akka$actor$Actor$$$undcontext__Lakka_actor_ActorContext();
-      $s_Lakka_actor_dungeon_DeathWatch$class__unwatch__Lakka_actor_ActorCell__Lakka_actor_ActorRef__Lakka_actor_ActorRef(this$2, child);
-      var this$3 = arg$outer.akka$actor$Actor$$$undcontext__Lakka_actor_ActorContext();
-      $s_Lakka_actor_dungeon_Children$class__stop__Lakka_actor_ActorCell__Lakka_actor_ActorRef__V(this$3, child)
-    })
-  })($$this)))
-}
 function $s_Lakka_actor_Actor$class__unhandled__Lakka_actor_Actor__O__V($$this, message) {
   if ($is_Lakka_actor_Terminated(message)) {
     var x2 = $as_Lakka_actor_Terminated(message);
@@ -1351,18 +1339,6 @@ $c_Lakka_actor_ActorCell$.prototype.splitNameAndUid__T__T2 = (function(name) {
     var s = $as_T(name["substring"](beginIndex));
     var x = this$5.parseInt__T__I__I(s, 10);
     return new $c_T2().init___O__O(jsx$1, x)
-  }
-});
-$c_Lakka_actor_ActorCell$.prototype.newUid__I = (function() {
-  _newUid: while (true) {
-    var this$1 = $m_s_util_Random$();
-    var this$2 = this$1.self$1;
-    var uid = this$2.next__I__I(32);
-    if ((uid === 0)) {
-      continue _newUid
-    } else {
-      return uid
-    }
   }
 });
 var $d_Lakka_actor_ActorCell$ = new $TypeData().initClass({
@@ -1694,11 +1670,6 @@ function $s_Lakka_actor_dungeon_Children$class__suspendChildren__Lakka_actor_Act
     })
   })(exceptFor)))
 }
-function $s_Lakka_actor_dungeon_Children$class__randomName__Lakka_actor_ActorCell__T($$this) {
-  var current = $$this.akka$actor$dungeon$Children$$$undnextName$1;
-  $$this.akka$actor$dungeon$Children$$$undnextName$1 = new $c_sjsr_RuntimeLong().init___I__I__I(1, 0, 0).$$plus__sjsr_RuntimeLong__sjsr_RuntimeLong($$this.akka$actor$dungeon$Children$$$undnextName$1);
-  return $m_Lakka_util_Helpers$().base64__J__T__T(current, "$")
-}
 function $s_Lakka_actor_dungeon_Children$class__waitingForChildrenOrNull__Lakka_actor_ActorCell__Lakka_actor_dungeon_ChildrenContainer$SuspendReason($$this) {
   var x1 = $$this.akka$actor$dungeon$Children$$childrenRefs$1;
   if ($is_Lakka_actor_dungeon_ChildrenContainer$TerminatingChildrenContainer(x1)) {
@@ -1754,42 +1725,6 @@ function $s_Lakka_actor_dungeon_Children$class__setChildrenTerminationReason__La
     return true
   } else {
     return false
-  }
-}
-function $s_Lakka_actor_dungeon_Children$class__makeChild__p0__Lakka_actor_ActorCell__Lakka_actor_ActorCell__Lakka_actor_Props__T__Z__Z__Lakka_actor_ActorRef($$this, cell, props, name, async, systemService) {
-  if ($$this.akka$actor$dungeon$Children$$childrenRefs$1.isTerminating__Z()) {
-    throw new $c_jl_IllegalStateException().init___T("cannot create children while terminating or terminated")
-  } else {
-    $s_Lakka_actor_dungeon_Children$class__checkChildNameAvailable__Lakka_actor_ActorCell__T__V($$this, name);
-    var childPath = new $c_Lakka_actor_ChildActorPath().init___Lakka_actor_ActorPath__T__I(cell.self$1.path__Lakka_actor_ActorPath(), name, $m_Lakka_actor_ActorCell$().newUid__I());
-    var system = $as_Lakka_actor_ActorSystemImpl(cell.system$1);
-    var ref = cell.self$1;
-    var supervisor = $as_Lakka_actor_InternalActorRef(ref);
-    var child = new $c_Lakka_actor_LocalActorRef().init___Lakka_actor_ActorSystem__Lakka_actor_ActorPath__Lakka_actor_ActorRef__Lakka_actor_Props__Lakka_dispatch_MessageDispatcher(system, childPath, supervisor, props, system.dispatcher$2);
-    if (($$this.akka$actor$dungeon$Dispatch$$$undmailbox$1 !== null)) {
-      var this$4 = $$this.akka$actor$dungeon$Dispatch$$$undmailbox$1;
-      var end = ((this$4.akka$dispatch$Mailbox$$status$f / 4) | 0);
-      var isEmpty$4 = (end < 1);
-      var numRangeElements$4 = (isEmpty$4 ? 0 : end);
-      var lastElement$4 = (isEmpty$4 ? 0 : end);
-      var terminalElement$4 = ((1 + lastElement$4) | 0);
-      if ((numRangeElements$4 < 0)) {
-        $m_sci_Range$().scala$collection$immutable$Range$$fail__I__I__I__Z__sr_Nothing$(1, end, 1, true)
-      };
-      var i = 1;
-      var count = 0;
-      while ((i !== terminalElement$4)) {
-        var v1 = i;
-        var this$7 = child.actorCell$3;
-        $s_Lakka_actor_dungeon_Dispatch$class__suspend__Lakka_actor_ActorCell__V(this$7);
-        count = ((1 + count) | 0);
-        i = ((1 + i) | 0)
-      }
-    };
-    $s_Lakka_actor_dungeon_Children$class__initChild__Lakka_actor_ActorCell__Lakka_actor_ActorRef__V($$this, child);
-    var this$8 = child.actorCell$3;
-    $s_Lakka_actor_dungeon_Dispatch$class__start__Lakka_actor_ActorCell__Lakka_actor_ActorCell(this$8);
-    return child
   }
 }
 /** @constructor */
@@ -3038,48 +2973,6 @@ function $s_Lakka_scalajs_webworkers_WebWorkersActorSystem$class__$$init$__Lakka
   $s_scm_MapLike$class__update__scm_MapLike__O__O__V(this$2, name, $$this)
 }
 /** @constructor */
-function $c_Lakka_util_Helpers$() {
-  $c_O.call(this);
-  this.base64chars$1 = null
-}
-$c_Lakka_util_Helpers$.prototype = new $h_O();
-$c_Lakka_util_Helpers$.prototype.constructor = $c_Lakka_util_Helpers$;
-/** @constructor */
-function $h_Lakka_util_Helpers$() {
-  /*<skip>*/
-}
-$h_Lakka_util_Helpers$.prototype = $c_Lakka_util_Helpers$.prototype;
-$c_Lakka_util_Helpers$.prototype.base64__J__T__T = (function(l, prefix) {
-  _base64: while (true) {
-    var jsx$1 = prefix;
-    var index = (63 & l.toInt__I());
-    var c = (65535 & $uI("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+~"["charCodeAt"](index)));
-    var newPrefix = (("" + jsx$1) + new $c_jl_Character().init___C(c));
-    var next = l.$$greater$greater$greater__I__sjsr_RuntimeLong(6);
-    if (next.equals__sjsr_RuntimeLong__Z($m_sjsr_RuntimeLong$().Zero__sjsr_RuntimeLong())) {
-      return newPrefix
-    } else {
-      l = next;
-      prefix = newPrefix;
-      continue _base64
-    }
-  }
-});
-var $d_Lakka_util_Helpers$ = new $TypeData().initClass({
-  Lakka_util_Helpers$: 0
-}, false, "akka.util.Helpers$", {
-  Lakka_util_Helpers$: 1,
-  O: 1
-});
-$c_Lakka_util_Helpers$.prototype.$classData = $d_Lakka_util_Helpers$;
-var $n_Lakka_util_Helpers$ = (void 0);
-function $m_Lakka_util_Helpers$() {
-  if ((!$n_Lakka_util_Helpers$)) {
-    $n_Lakka_util_Helpers$ = new $c_Lakka_util_Helpers$().init___()
-  };
-  return $n_Lakka_util_Helpers$
-}
-/** @constructor */
 function $c_Lakka_util_JSQueue() {
   $c_O.call(this);
   this.queue$1 = null;
@@ -3204,8 +3097,7 @@ function $m_Lio_atom_electron_BrowserWindow$() {
 }
 /** @constructor */
 function $c_Ljp_co_so$undnet_garoonify_Renderer$() {
-  $c_O.call(this);
-  this.system$1 = null
+  $c_O.call(this)
 }
 $c_Ljp_co_so$undnet_garoonify_Renderer$.prototype = new $h_O();
 $c_Ljp_co_so$undnet_garoonify_Renderer$.prototype.constructor = $c_Ljp_co_so$undnet_garoonify_Renderer$;
@@ -3214,20 +3106,8 @@ function $h_Ljp_co_so$undnet_garoonify_Renderer$() {
   /*<skip>*/
 }
 $h_Ljp_co_so$undnet_garoonify_Renderer$.prototype = $c_Ljp_co_so$undnet_garoonify_Renderer$.prototype;
-$c_Ljp_co_so$undnet_garoonify_Renderer$.prototype.init___ = (function() {
-  $n_Ljp_co_so$undnet_garoonify_Renderer$ = this;
-  this.system$1 = $m_Lakka_actor_ActorSystem$().apply__T__Lakka_actor_ActorSystem("tutorial-app");
-  return this
-});
-$c_Ljp_co_so$undnet_garoonify_Renderer$.prototype.main__V = (function() {
-  var jsx$1 = this.system$1;
-  var creator = new $c_sjsr_AnonFunction0().init___sjs_js_Function0((function() {
-    return new $c_Ljp_co_so$undnet_garoonify_TrayActor().init___()
-  }));
-  jsx$1.actorOf__Lakka_actor_Props__Lakka_actor_ActorRef(new $c_Lakka_actor_Props().init___jl_Class__F0($d_Ljp_co_so$undnet_garoonify_TrayActor.getClassOf(), creator))
-});
 $c_Ljp_co_so$undnet_garoonify_Renderer$.prototype.$$js$exported$meth$main__O = (function() {
-  this.main__V()
+  return (void 0)
 });
 $c_Ljp_co_so$undnet_garoonify_Renderer$.prototype["main"] = (function() {
   return this.$$js$exported$meth$main__O()
@@ -3251,21 +3131,6 @@ $e["jp"]["co"] = ($e["jp"]["co"] || {});
 $e["jp"]["co"]["so_net"] = ($e["jp"]["co"]["so_net"] || {});
 $e["jp"]["co"]["so_net"]["garoonify"] = ($e["jp"]["co"]["so_net"]["garoonify"] || {});
 $e["jp"]["co"]["so_net"]["garoonify"]["Renderer"] = $m_Ljp_co_so$undnet_garoonify_Renderer$;
-function $s_Ljp_co_so$undnet_garoonify_TrayMenu$class__$$init$__Ljp_co_so$undnet_garoonify_TrayMenu__V($$this) {
-  $$this.menu$1 = $g["require"]("menu");
-  $$this.tray$1 = $g["require"]("tray");
-  $$this.iconPath$1 = "src/electron/icon.png";
-  var jsx$2 = $$this.tray$1;
-  var s = $$this.iconPath$1;
-  var jsx$1 = new jsx$2(s);
-  $$this.appIcon$1 = jsx$1;
-  $$this.template$1 = [{
-    "label": "Item1",
-    "type": "radio"
-  }];
-  $$this.contextMenu$1 = $$this.menu$1["buildFromTemplate"]($$this.template$1);
-  $$this.appIcon$1["setContextMenu"]($$this.contextMenu$1)
-}
 /** @constructor */
 function $c_jl_Character$() {
   $c_O.call(this);
@@ -6710,6 +6575,19 @@ $c_sjsr_RuntimeString$.prototype.indexOf__T__I__I = (function(thiz, ch) {
   var str = this.fromCodePoint__p1__I__T(ch);
   return $uI(thiz["indexOf"](str))
 });
+$c_sjsr_RuntimeString$.prototype.hashCode__T__I = (function(thiz) {
+  var res = 0;
+  var mul = 1;
+  var i = (((-1) + $uI(thiz["length"])) | 0);
+  while ((i >= 0)) {
+    var jsx$1 = res;
+    var index = i;
+    res = ((jsx$1 + $imul((65535 & $uI(thiz["charCodeAt"](index))), mul)) | 0);
+    mul = $imul(31, mul);
+    i = (((-1) + i) | 0)
+  };
+  return res
+});
 $c_sjsr_RuntimeString$.prototype.fromCodePoint__p1__I__T = (function(codePoint) {
   if ((((-65536) & codePoint) === 0)) {
     var array = [codePoint];
@@ -6725,19 +6603,6 @@ $c_sjsr_RuntimeString$.prototype.fromCodePoint__p1__I__T = (function(codePoint) 
     var jsx$3 = jsx$4["fromCharCode"]["apply"](jsx$4, array$1);
     return $as_T(jsx$3)
   }
-});
-$c_sjsr_RuntimeString$.prototype.hashCode__T__I = (function(thiz) {
-  var res = 0;
-  var mul = 1;
-  var i = (((-1) + $uI(thiz["length"])) | 0);
-  while ((i >= 0)) {
-    var jsx$1 = res;
-    var index = i;
-    res = ((jsx$1 + $imul((65535 & $uI(thiz["charCodeAt"](index))), mul)) | 0);
-    mul = $imul(31, mul);
-    i = (((-1) + i) | 0)
-  };
-  return res
 });
 $c_sjsr_RuntimeString$.prototype.format__T__AO__T = (function(format, args) {
   var frm = new $c_ju_Formatter().init___();
@@ -7880,9 +7745,6 @@ $c_Lakka_dispatch_Mailbox.prototype.processMailbox$default$2__p1__J = (function(
     return $m_sjsr_RuntimeLong$().Zero__sjsr_RuntimeLong()
   }
 });
-$c_Lakka_dispatch_Mailbox.prototype.dequeue__Lakka_actor_Envelope = (function() {
-  return this.messageQueue$1.dequeue__Lakka_actor_Envelope()
-});
 $c_Lakka_dispatch_Mailbox.prototype.canBeScheduledForExecution__Z__Z__Z = (function(hasMessageHint, hasSystemMessageHint) {
   var x1 = this.akka$dispatch$Mailbox$$status$f;
   switch (x1) {
@@ -7900,16 +7762,8 @@ $c_Lakka_dispatch_Mailbox.prototype.canBeScheduledForExecution__Z__Z__Z = (funct
     }
   }
 });
-$c_Lakka_dispatch_Mailbox.prototype.enqueue__Lakka_actor_ActorRef__Lakka_actor_Envelope__V = (function(receiver, msg) {
-  this.messageQueue$1.enqueue__Lakka_actor_ActorRef__Lakka_actor_Envelope__V(receiver, msg)
-});
-$c_Lakka_dispatch_Mailbox.prototype.becomeClosed__Z = (function() {
-  if ((this.akka$dispatch$Mailbox$$status$f !== 1)) {
-    this.akka$dispatch$Mailbox$$status$f = 1;
-    return true
-  } else {
-    return false
-  }
+$c_Lakka_dispatch_Mailbox.prototype.dequeue__Lakka_actor_Envelope = (function() {
+  return this.messageQueue$1.dequeue__Lakka_actor_Envelope()
 });
 $c_Lakka_dispatch_Mailbox.prototype.setAsScheduled__Z = (function() {
   var s = this.akka$dispatch$Mailbox$$status$f;
@@ -7919,6 +7773,17 @@ $c_Lakka_dispatch_Mailbox.prototype.setAsScheduled__Z = (function() {
   } else {
     return false
   }
+});
+$c_Lakka_dispatch_Mailbox.prototype.becomeClosed__Z = (function() {
+  if ((this.akka$dispatch$Mailbox$$status$f !== 1)) {
+    this.akka$dispatch$Mailbox$$status$f = 1;
+    return true
+  } else {
+    return false
+  }
+});
+$c_Lakka_dispatch_Mailbox.prototype.enqueue__Lakka_actor_ActorRef__Lakka_actor_Envelope__V = (function(receiver, msg) {
+  this.messageQueue$1.enqueue__Lakka_actor_ActorRef__Lakka_actor_Envelope__V(receiver, msg)
 });
 $c_Lakka_dispatch_Mailbox.prototype.setAsIdle__Z = (function() {
   this.akka$dispatch$Mailbox$$status$f = ((-3) & this.akka$dispatch$Mailbox$$status$f);
@@ -9044,6 +8909,7 @@ $c_Ljp_co_so$undnet_garoonify_Main$.prototype.init___ = (function() {
 });
 $c_Ljp_co_so$undnet_garoonify_Main$.prototype.main__V = (function() {
   var app = $g["require"]("app");
+  $m_Lakka_actor_ActorSystem$().apply__T__Lakka_actor_ActorSystem("tutorial-app");
   $g["require"]("crash-reporter")["start"]();
   var mainWindow = new $c_sr_ObjectRef().init___O(null);
   app["on"]("ready", (function(f) {
@@ -9205,57 +9071,6 @@ function $isArrayOf_jl_Throwable(obj, depth) {
 function $asArrayOf_jl_Throwable(obj, depth) {
   return (($isArrayOf_jl_Throwable(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.lang.Throwable;", depth))
 }
-/** @constructor */
-function $c_ju_Random() {
-  $c_O.call(this);
-  this.seedHi$1 = 0;
-  this.seedLo$1 = 0;
-  this.nextNextGaussian$1 = 0.0;
-  this.haveNextNextGaussian$1 = false
-}
-$c_ju_Random.prototype = new $h_O();
-$c_ju_Random.prototype.constructor = $c_ju_Random;
-/** @constructor */
-function $h_ju_Random() {
-  /*<skip>*/
-}
-$h_ju_Random.prototype = $c_ju_Random.prototype;
-$c_ju_Random.prototype.init___ = (function() {
-  $c_ju_Random.prototype.init___J.call(this, $m_ju_Random$().java$util$Random$$randomSeed__J());
-  return this
-});
-$c_ju_Random.prototype.init___J = (function(seed_in) {
-  this.haveNextNextGaussian$1 = false;
-  this.setSeed__J__V(seed_in);
-  return this
-});
-$c_ju_Random.prototype.next__I__I = (function(bits) {
-  var oldSeedHi = this.seedHi$1;
-  var oldSeedLo = this.seedLo$1;
-  var loProd = (11 + (15525485 * oldSeedLo));
-  var hiProd = ((1502 * oldSeedLo) + (15525485 * oldSeedHi));
-  var x = (loProd / 16777216);
-  var newSeedHi = (16777215 & (($uI((x | 0)) + (16777215 & $uI((hiProd | 0)))) | 0));
-  var newSeedLo = (16777215 & $uI((loProd | 0)));
-  this.seedHi$1 = newSeedHi;
-  this.seedLo$1 = newSeedLo;
-  var result32 = ((newSeedHi << 8) | (newSeedLo >> 16));
-  return ((result32 >>> ((32 - bits) | 0)) | 0)
-});
-$c_ju_Random.prototype.setSeed__J__V = (function(seed_in) {
-  var seed = new $c_sjsr_RuntimeLong().init___I__I__I(4194303, 4194303, 15).$$amp__sjsr_RuntimeLong__sjsr_RuntimeLong(new $c_sjsr_RuntimeLong().init___I__I__I(2942573, 6011, 0).$$up__sjsr_RuntimeLong__sjsr_RuntimeLong(seed_in));
-  this.seedHi$1 = seed.$$greater$greater$greater__I__sjsr_RuntimeLong(24).toInt__I();
-  this.seedLo$1 = (16777215 & seed.toInt__I());
-  this.haveNextNextGaussian$1 = false
-});
-var $d_ju_Random = new $TypeData().initClass({
-  ju_Random: 0
-}, false, "java.util.Random", {
-  ju_Random: 1,
-  O: 1,
-  Ljava_io_Serializable: 1
-});
-$c_ju_Random.prototype.$classData = $d_ju_Random;
 /** @constructor */
 function $c_ju_concurrent_TimeUnit() {
   $c_O.call(this);
@@ -10181,60 +9996,6 @@ $h_Ljava_io_OutputStream.prototype = $c_Ljava_io_OutputStream.prototype;
 $c_Ljava_io_OutputStream.prototype.close__V = (function() {
   /*<skip>*/
 });
-/** @constructor */
-function $c_Ljp_co_so$undnet_garoonify_TrayActor() {
-  $c_O.call(this);
-  this.menu$1 = null;
-  this.tray$1 = null;
-  this.iconPath$1 = null;
-  this.appIcon$1 = null;
-  this.template$1 = null;
-  this.contextMenu$1 = null;
-  this.akka$actor$Actor$$$undcontext$1 = null;
-  this.akka$actor$Actor$$$undself$1 = null
-}
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype = new $h_O();
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.constructor = $c_Ljp_co_so$undnet_garoonify_TrayActor;
-/** @constructor */
-function $h_Ljp_co_so$undnet_garoonify_TrayActor() {
-  /*<skip>*/
-}
-$h_Ljp_co_so$undnet_garoonify_TrayActor.prototype = $c_Ljp_co_so$undnet_garoonify_TrayActor.prototype;
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.akka$actor$Actor$$$undcontext$und$eq__Lakka_actor_ActorContext__V = (function(x$1) {
-  this.akka$actor$Actor$$$undcontext$1 = x$1
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.init___ = (function() {
-  $s_Lakka_actor_Actor$class__$$init$__Lakka_actor_Actor__V(this);
-  $s_Ljp_co_so$undnet_garoonify_TrayMenu$class__$$init$__Ljp_co_so$undnet_garoonify_TrayMenu__V(this);
-  return this
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.akka$actor$Actor$$$undcontext__Lakka_actor_ActorContext = (function() {
-  return this.akka$actor$Actor$$$undcontext$1
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.supervisorStrategy__Lakka_actor_SupervisorStrategy = (function() {
-  return $m_Lakka_actor_SupervisorStrategy$().defaultStrategy$1
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.akka$actor$Actor$$$undself$und$eq__Lakka_actor_ActorRef__V = (function(x$1) {
-  this.akka$actor$Actor$$$undself$1 = x$1
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.receive__s_PartialFunction = (function() {
-  return new $c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1().init___Ljp_co_so$undnet_garoonify_TrayActor(this)
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.preRestart__jl_Throwable__s_Option__V = (function(reason, message) {
-  $s_Lakka_actor_Actor$class__preRestart__Lakka_actor_Actor__jl_Throwable__s_Option__V(this, reason, message)
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.akka$actor$Actor$$$undself__Lakka_actor_ActorRef = (function() {
-  return this.akka$actor$Actor$$$undself$1
-});
-var $d_Ljp_co_so$undnet_garoonify_TrayActor = new $TypeData().initClass({
-  Ljp_co_so$undnet_garoonify_TrayActor: 0
-}, false, "jp.co.so_net.garoonify.TrayActor", {
-  Ljp_co_so$undnet_garoonify_TrayActor: 1,
-  O: 1,
-  Lakka_actor_Actor: 1,
-  Ljp_co_so$undnet_garoonify_TrayMenu: 1
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor.prototype.$classData = $d_Ljp_co_so$undnet_garoonify_TrayActor;
 var $d_jl_Byte = new $TypeData().initClass({
   jl_Byte: 0
 }, false, "java.lang.Byte", {
@@ -10819,40 +10580,6 @@ var $d_ju_Formatter = new $TypeData().initClass({
   Ljava_io_Flushable: 1
 });
 $c_ju_Formatter.prototype.$classData = $d_ju_Formatter;
-/** @constructor */
-function $c_ju_Random$() {
-  $c_O.call(this)
-}
-$c_ju_Random$.prototype = new $h_O();
-$c_ju_Random$.prototype.constructor = $c_ju_Random$;
-/** @constructor */
-function $h_ju_Random$() {
-  /*<skip>*/
-}
-$h_ju_Random$.prototype = $c_ju_Random$.prototype;
-$c_ju_Random$.prototype.java$util$Random$$randomSeed__J = (function() {
-  return new $c_sjsr_RuntimeLong().init___I(this.randomInt__p1__I()).$$less$less__I__sjsr_RuntimeLong(32).$$bar__sjsr_RuntimeLong__sjsr_RuntimeLong(new $c_sjsr_RuntimeLong().init___I__I__I(4194303, 1023, 0).$$amp__sjsr_RuntimeLong__sjsr_RuntimeLong(new $c_sjsr_RuntimeLong().init___I(this.randomInt__p1__I())))
-});
-$c_ju_Random$.prototype.randomInt__p1__I = (function() {
-  var a = (4.294967296E9 * $uD($g["Math"]["random"]()));
-  return $doubleToInt(((-2.147483648E9) + $uD($g["Math"]["floor"](a))))
-});
-var $d_ju_Random$ = new $TypeData().initClass({
-  ju_Random$: 0
-}, false, "java.util.Random$", {
-  ju_Random$: 1,
-  O: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_ju_Random$.prototype.$classData = $d_ju_Random$;
-var $n_ju_Random$ = (void 0);
-function $m_ju_Random$() {
-  if ((!$n_ju_Random$)) {
-    $n_ju_Random$ = new $c_ju_Random$().init___()
-  };
-  return $n_ju_Random$
-}
 /** @constructor */
 function $c_ju_concurrent_TimeUnit$() {
   $c_O.call(this);
@@ -12413,26 +12140,6 @@ function $m_s_util_Left$() {
   return $n_s_util_Left$
 }
 /** @constructor */
-function $c_s_util_Random() {
-  $c_O.call(this);
-  this.self$1 = null
-}
-$c_s_util_Random.prototype = new $h_O();
-$c_s_util_Random.prototype.constructor = $c_s_util_Random;
-/** @constructor */
-function $h_s_util_Random() {
-  /*<skip>*/
-}
-$h_s_util_Random.prototype = $c_s_util_Random.prototype;
-$c_s_util_Random.prototype.init___ = (function() {
-  $c_s_util_Random.prototype.init___ju_Random.call(this, new $c_ju_Random().init___());
-  return this
-});
-$c_s_util_Random.prototype.init___ju_Random = (function(self) {
-  this.self$1 = self;
-  return this
-});
-/** @constructor */
 function $c_s_util_Right$() {
   $c_O.call(this)
 }
@@ -13425,10 +13132,6 @@ $c_Lakka_actor_ActorSystemImpl.prototype.$$undstart$lzycompute__p2__Lakka_actor_
   };
   return this.$$undstart$2
 });
-$c_Lakka_actor_ActorSystemImpl.prototype.actorOf__Lakka_actor_Props__Lakka_actor_ActorRef = (function(props) {
-  var this$1 = this.provider$2.guardian__Lakka_actor_LocalActorRef().actorCell$3;
-  return $s_Lakka_actor_dungeon_Children$class__makeChild__p0__Lakka_actor_ActorCell__Lakka_actor_ActorCell__Lakka_actor_Props__T__Z__Z__Lakka_actor_ActorRef(this$1, this$1, props, $s_Lakka_actor_dungeon_Children$class__randomName__Lakka_actor_ActorCell__T(this$1), false, false)
-});
 $c_Lakka_actor_ActorSystemImpl.prototype.init___Lakka_actor_ActorSystem$Settings = (function(_settings) {
   $c_Lakka_actor_ActorSystem.prototype.init___Lakka_actor_ActorSystem$Settings.call(this, _settings);
   $s_Lakka_scalajs_webworkers_WebWorkersActorSystem$class__$$init$__Lakka_actor_ActorSystemImpl__V(this);
@@ -13440,18 +13143,6 @@ $c_Lakka_actor_ActorSystemImpl.prototype.init___Lakka_actor_ActorSystem$Settings
   this.dispatcher$2 = new $c_Lakka_dispatch_MessageDispatcher().init___Lakka_dispatch_Mailboxes(this.mailboxes$2);
   return this
 });
-function $is_Lakka_actor_ActorSystemImpl(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lakka_actor_ActorSystemImpl)))
-}
-function $as_Lakka_actor_ActorSystemImpl(obj) {
-  return (($is_Lakka_actor_ActorSystemImpl(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "akka.actor.ActorSystemImpl"))
-}
-function $isArrayOf_Lakka_actor_ActorSystemImpl(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lakka_actor_ActorSystemImpl)))
-}
-function $asArrayOf_Lakka_actor_ActorSystemImpl(obj, depth) {
-  return (($isArrayOf_Lakka_actor_ActorSystemImpl(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lakka.actor.ActorSystemImpl;", depth))
-}
 var $d_Lakka_actor_ActorSystemImpl = new $TypeData().initClass({
   Lakka_actor_ActorSystemImpl: 0
 }, false, "akka.actor.ActorSystemImpl", {
@@ -14212,34 +13903,6 @@ function $m_s_reflect_NoManifest$() {
     $n_s_reflect_NoManifest$ = new $c_s_reflect_NoManifest$().init___()
   };
   return $n_s_reflect_NoManifest$
-}
-/** @constructor */
-function $c_s_util_Random$() {
-  $c_s_util_Random.call(this)
-}
-$c_s_util_Random$.prototype = new $h_s_util_Random();
-$c_s_util_Random$.prototype.constructor = $c_s_util_Random$;
-/** @constructor */
-function $h_s_util_Random$() {
-  /*<skip>*/
-}
-$h_s_util_Random$.prototype = $c_s_util_Random$.prototype;
-var $d_s_util_Random$ = new $TypeData().initClass({
-  s_util_Random$: 0
-}, false, "scala.util.Random$", {
-  s_util_Random$: 1,
-  s_util_Random: 1,
-  O: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_s_util_Random$.prototype.$classData = $d_s_util_Random$;
-var $n_s_util_Random$ = (void 0);
-function $m_s_util_Random$() {
-  if ((!$n_s_util_Random$)) {
-    $n_s_util_Random$ = new $c_s_util_Random$().init___()
-  };
-  return $n_s_util_Random$
 }
 /** @constructor */
 function $c_sc_AbstractIterator() {
@@ -19069,45 +18732,6 @@ function $asArrayOf_Ljava_io_PrintStream(obj, depth) {
   return (($isArrayOf_Ljava_io_PrintStream(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Ljava.io.PrintStream;", depth))
 }
 /** @constructor */
-function $c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1() {
-  $c_sr_AbstractPartialFunction.call(this)
-}
-$c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype = new $h_sr_AbstractPartialFunction();
-$c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype.constructor = $c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1;
-/** @constructor */
-function $h_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1() {
-  /*<skip>*/
-}
-$h_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype = $c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype;
-$c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype.init___Ljp_co_so$undnet_garoonify_TrayActor = (function($$outer) {
-  return this
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype.isDefinedAt__O__Z = (function(x1) {
-  return $uZ((x1 instanceof $g["Event"]))
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype.applyOrElse__O__F1__O = (function(x1, $default) {
-  if ($uZ((x1 instanceof $g["Event"]))) {
-    var this$2 = $m_s_Console$();
-    var this$3 = this$2.outVar$2;
-    $as_Ljava_io_PrintStream(this$3.tl$1.get__O()).println__O__V("OK");
-    return (void 0)
-  } else {
-    return $default.apply__O__O(x1)
-  }
-});
-var $d_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1 = new $TypeData().initClass({
-  Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1: 0
-}, false, "jp.co.so_net.garoonify.TrayActor$$anonfun$receive$1", {
-  Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1: 1,
-  sr_AbstractPartialFunction: 1,
-  O: 1,
-  F1: 1,
-  s_PartialFunction: 1,
-  s_Serializable: 1,
-  Ljava_io_Serializable: 1
-});
-$c_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1.prototype.$classData = $d_Ljp_co_so$undnet_garoonify_TrayActor$$anonfun$receive$1;
-/** @constructor */
 function $c_T2() {
   $c_O.call(this);
   this.$$und1$f = null;
@@ -22218,11 +21842,6 @@ $c_Lakka_actor_ActorCell.prototype.init___Lakka_actor_ActorSystem__Lakka_actor_P
   this.currentMessage$1 = null;
   return this
 });
-$c_Lakka_actor_ActorCell.prototype.unstashAllLatestFirst__p1__sci_List = (function() {
-  var unstashed = this.sysmsgStashLatestFirst$1;
-  this.sysmsgStashLatestFirst$1 = $m_sci_Nil$();
-  return unstashed
-});
 $c_Lakka_actor_ActorCell.prototype.invokeAll$1__p1__sci_List__I__V = (function(messages, currentState) {
   x: {
     _invokeAll: while (true) {
@@ -22339,6 +21958,11 @@ $c_Lakka_actor_ActorCell.prototype.invokeAll$1__p1__sci_List__I__V = (function(m
     }
   }
 });
+$c_Lakka_actor_ActorCell.prototype.unstashAllLatestFirst__p1__sci_List = (function() {
+  var unstashed = this.sysmsgStashLatestFirst$1;
+  this.sysmsgStashLatestFirst$1 = $m_sci_Nil$();
+  return unstashed
+});
 $c_Lakka_actor_ActorCell.prototype.invoke__Lakka_actor_Envelope__V = (function(messageHandle) {
   try {
     try {
@@ -22376,6 +22000,14 @@ $c_Lakka_actor_ActorCell.prototype.invoke__Lakka_actor_Envelope__V = (function(m
     $s_Lakka_actor_dungeon_ReceiveTimeout$class__checkReceiveTimeout__Lakka_actor_ActorCell__V(this)
   }
 });
+$c_Lakka_actor_ActorCell.prototype.clearActorFields__Lakka_actor_Actor__V = (function(actorInstance) {
+  var this$1 = this.system$1;
+  var this$2 = this$1.provider$2;
+  var self = this$2.deadLetters$1;
+  $s_Lakka_actor_Actor$class__setActorFields__Lakka_actor_Actor__Lakka_actor_ActorContext__Lakka_actor_ActorRef__V(actorInstance, null, self);
+  this.currentMessage$1 = null;
+  this.behaviorStack$1 = $m_Lakka_actor_ActorCell$().emptyBehaviorStack$1
+});
 $c_Lakka_actor_ActorCell.prototype.sender__Lakka_actor_ActorRef = (function() {
   var x1 = this.currentMessage$1;
   if ((x1 === null)) {
@@ -22389,14 +22021,6 @@ $c_Lakka_actor_ActorCell.prototype.sender__Lakka_actor_ActorRef = (function() {
     var this$4 = this$3.provider$2;
     return this$4.deadLetters$1
   }
-});
-$c_Lakka_actor_ActorCell.prototype.clearActorFields__Lakka_actor_Actor__V = (function(actorInstance) {
-  var this$1 = this.system$1;
-  var this$2 = this$1.provider$2;
-  var self = this$2.deadLetters$1;
-  $s_Lakka_actor_Actor$class__setActorFields__Lakka_actor_Actor__Lakka_actor_ActorContext__Lakka_actor_ActorRef__V(actorInstance, null, self);
-  this.currentMessage$1 = null;
-  this.behaviorStack$1 = $m_Lakka_actor_ActorCell$().emptyBehaviorStack$1
 });
 $c_Lakka_actor_ActorCell.prototype.publish__Lakka_event_Logging$LogEvent__V = (function(e) {
   try {
@@ -28196,9 +27820,6 @@ $c_sci_List.prototype.foldLeft__O__F2__O = (function(z, f) {
 $c_sci_List.prototype.reverse__O = (function() {
   return this.reverse__sci_List()
 });
-$c_sci_List.prototype.iterator__sc_Iterator = (function() {
-  return new $c_sc_LinearSeqLike$$anon$1().init___sc_LinearSeqLike(this)
-});
 $c_sci_List.prototype.drop__I__sci_List = (function(n) {
   var these = this;
   var count = n;
@@ -28207,6 +27828,9 @@ $c_sci_List.prototype.drop__I__sci_List = (function(n) {
     count = (((-1) + count) | 0)
   };
   return these
+});
+$c_sci_List.prototype.iterator__sc_Iterator = (function() {
+  return new $c_sc_LinearSeqLike$$anon$1().init___sc_LinearSeqLike(this)
 });
 $c_sci_List.prototype.seq__sc_Seq = (function() {
   return this
@@ -29400,11 +29024,11 @@ $c_sci_Vector.prototype.apply__I__O = (function(index) {
 $c_sci_Vector.prototype.thisCollection__sc_Iterable = (function() {
   return this
 });
-$c_sci_Vector.prototype.depth__I = (function() {
-  return this.depth$4
-});
 $c_sci_Vector.prototype.lengthCompare__I__I = (function(len) {
   return ((this.length__I() - len) | 0)
+});
+$c_sci_Vector.prototype.depth__I = (function() {
+  return this.depth$4
 });
 $c_sci_Vector.prototype.apply__O__O = (function(v1) {
   return this.apply__I__O($uI(v1))
@@ -32016,12 +31640,12 @@ $c_sjs_js_WrappedArray.prototype.apply__I__O = (function(index) {
 $c_sjs_js_WrappedArray.prototype.lengthCompare__I__I = (function(len) {
   return $s_sc_IndexedSeqOptimized$class__lengthCompare__sc_IndexedSeqOptimized__I__I(this, len)
 });
+$c_sjs_js_WrappedArray.prototype.sameElements__sc_GenIterable__Z = (function(that) {
+  return $s_sc_IndexedSeqOptimized$class__sameElements__sc_IndexedSeqOptimized__sc_GenIterable__Z(this, that)
+});
 $c_sjs_js_WrappedArray.prototype.apply__O__O = (function(v1) {
   var index = $uI(v1);
   return this.array$6[index]
-});
-$c_sjs_js_WrappedArray.prototype.sameElements__sc_GenIterable__Z = (function(that) {
-  return $s_sc_IndexedSeqOptimized$class__sameElements__sc_IndexedSeqOptimized__sc_GenIterable__Z(this, that)
 });
 $c_sjs_js_WrappedArray.prototype.seq__sc_Iterable = (function() {
   return this

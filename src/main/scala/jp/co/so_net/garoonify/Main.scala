@@ -17,7 +17,7 @@ object Main extends js.JSApp {
 //    val tray = g.require("tray").asInstanceOf[js.Dynamic]
 //    val iconPath = "src/electron/icon.png"
 
-//    val system = ActorSystem("tutorial-app")
+    val system = ActorSystem("tutorial-app")
 
     // Report crashes to our server.
     g.require("crash-reporter").start()

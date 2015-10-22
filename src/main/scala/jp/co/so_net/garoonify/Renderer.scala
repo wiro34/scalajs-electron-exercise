@@ -14,10 +14,10 @@ import scala.scalajs.js.annotation.JSExport
 
 @JSExport
 object Renderer {
-  val system = ActorSystem("tutorial-app")
+//  val system = ActorSystem("tutorial-app")
 
   @JSExport
   def main(): Unit = {
-          system.actorOf(Props(new TrayActor))
+//          system.actorOf(Props(new TrayActor))
   }
 }

@@ -21,6 +21,8 @@ trait TrayMenu {
   )
   var contextMenu = menu.buildFromTemplate(template)
   appIcon.setContextMenu(contextMenu)
+
+//  appIcon.on()
 }
 
 class TrayActor extends Actor with TrayMenu {
