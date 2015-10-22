@@ -21,7 +21,7 @@ trait App extends js.Object with EventEmitter {
 
   def clearRecentDocuments(): Unit = js.native
 
-  def dock(): Dock = js.native
+  val dock: Dock = js.native
 
   // TODO
   // app.setUserTasks(tasks)

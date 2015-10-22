@@ -1,4 +1,4 @@
-package tutorial.webapp
+package jp.co.so_net.garoonify
 
 import scala.scalajs.js
 import js.Dynamic.{global => g}
@@ -13,9 +13,11 @@ import io.atom.electron._
 object Main extends js.JSApp {
   def main(): Unit = {
     val app = g.require("app").asInstanceOf[App]
-    val menu = g.require("menu").asInstanceOf[Menu]
-    val tray = g.require("tray").asInstanceOf[Tray]
-//    val iconPath = app.getPath("../icon.png")
+//    val menu = g.require("menu").asInstanceOf[Menu]
+//    val tray = g.require("tray").asInstanceOf[js.Dynamic]
+//    val iconPath = "src/electron/icon.png"
+
+//    val system = ActorSystem("tutorial-app")
 
     // Report crashes to our server.
     g.require("crash-reporter").start()
@@ -36,6 +38,17 @@ object Main extends js.JSApp {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     app.on("ready", () => {
+      //      app.dock.hide()
+//      system.actorOf(Props(new TrayActor))
+
+//      val appIcon = js.Dynamic.newInstance(tray)(iconPath).asInstanceOf[Tray]
+//      val template = js.Array(
+//        js.Dynamic.literal(label = "Item1", `type` = "radio")
+//      )
+//      var contextMenu = menu.buildFromTemplate(template)
+//      appIcon.setToolTip("This is my application.");
+//      appIcon.setContextMenu(contextMenu);
+
       // Create the browser window.
       mainWindow = BrowserWindow(width = 800, height = 600)
 
@@ -53,18 +66,5 @@ object Main extends js.JSApp {
         mainWindow = null
       )
     })
-
-    //    var appIcon = new Tray(iconPath.toString());
-    //    var contextMenu = Menu.buildFromTemplate([
-    //      { label: 'Item1', type: 'radio' },
-    //      { label: 'Item2', type: 'radio' },
-    //      { label: 'Item3', type: 'radio', checked: true },
-    //      { label: 'Item4', type: 'radio' }
-    //      ]);
-    //    appIcon.setToolTip('This is my application.');
-    //    appIcon.setContextMenu(contextMenu);
-
   }
-
-  def require[A](moduleName: String): A = g.require(moduleName).asInstanceOf[A]
 }

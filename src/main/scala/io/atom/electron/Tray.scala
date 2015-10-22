@@ -5,5 +5,9 @@ import scala.scalajs.js.Dynamic.{global => g}
 
 @js.native
 trait Tray extends js.Object with EventEmitter {
-//  def quit(): Unit = js.native
+
+  def setToolTip(tooltip: String): Unit = js.native
+
+  def setContextMenu(contextMenu: ContextMenu): Unit = js.native
+
 }
