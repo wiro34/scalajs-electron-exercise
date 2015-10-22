@@ -11,21 +11,33 @@ import akka.util.Timeout
 import io.atom.electron._
 
 trait TrayMenu {
-  val menu = g.require("menu").asInstanceOf[Menu]
+  val menu = g.require("menu").asInstanceOf[js.Dynamic]
   val tray = g.require("tray").asInstanceOf[js.Dynamic]
+  val menuItem = g.require("menu-item").asInstanceOf[js.Dynamic]
   val iconPath = "src/electron/icon.png"
+
+  val item = js.Dynamic.newInstance(menuItem)(
+    js.Dynamic.literal(label = "Item1", click = () => {println("Foo")})
+  ).asInstanceOf[MenuItem]
 
   val appIcon = js.Dynamic.newInstance(tray)(iconPath).asInstanceOf[Tray]
   val template = js.Array(
-    js.Dynamic.literal(label = "Item1", `type` = "radio")
+    js.Dynamic.literal(label = "Item1")
   )
   var contextMenu = menu.buildFromTemplate(template)
-  appIcon.setContextMenu(contextMenu)
+  val contextMenu2 = js.Dynamic.newInstance(menu)().asInstanceOf[Menu]
 
-//  appIcon.on()
+  contextMenu2.append(item)
+
+//  appIcon.setContextMenu(contextMenu)
+  appIcon.setContextMenu(contextMenu2)
+  appIcon.on("clicked", () => {
+    println("Hoge")
+  })
 }
 
 class TrayActor extends Actor with TrayMenu {
+  println("Actor start")
   def receive = {
     case e: dom.Event =>
       println("OK")

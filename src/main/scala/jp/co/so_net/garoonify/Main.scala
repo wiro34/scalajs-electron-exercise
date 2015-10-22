@@ -1,5 +1,7 @@
 package jp.co.so_net.garoonify
 
+import jp.co.so_net.garoonify.garoon.GaroonClientActor
+
 import scala.scalajs.js
 import js.Dynamic.{global => g}
 import org.scalajs.dom
@@ -13,10 +15,6 @@ import io.atom.electron._
 object Main extends js.JSApp {
   def main(): Unit = {
     val app = g.require("app").asInstanceOf[App]
-//    val menu = g.require("menu").asInstanceOf[Menu]
-//    val tray = g.require("tray").asInstanceOf[js.Dynamic]
-//    val iconPath = "src/electron/icon.png"
-
     val system = ActorSystem("tutorial-app")
 
     // Report crashes to our server.
@@ -38,16 +36,13 @@ object Main extends js.JSApp {
     // This method will be called when Electron has finished
     // initialization and is ready to create browser windows.
     app.on("ready", () => {
-      //      app.dock.hide()
-//      system.actorOf(Props(new TrayActor))
+      // app.dock.hide()
 
-//      val appIcon = js.Dynamic.newInstance(tray)(iconPath).asInstanceOf[Tray]
-//      val template = js.Array(
-//        js.Dynamic.literal(label = "Item1", `type` = "radio")
-//      )
-//      var contextMenu = menu.buildFromTemplate(template)
-//      appIcon.setToolTip("This is my application.");
-//      appIcon.setContextMenu(contextMenu);
+      val garoonActor = system.actorOf(Props(classOf[GaroonClientActor]))
+      val trayActor = system.actorOf(Props(classOf[TrayActor]))
+      val scheduledActor = system.actorOf(Props(classOf[ScheduledActor], garoonActor))
+
+      scheduledActor ! ScheduledActorProtocol.Schedule(1)
 
       // Create the browser window.
       mainWindow = BrowserWindow(width = 800, height = 600)
