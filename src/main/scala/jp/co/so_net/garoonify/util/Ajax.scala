@@ -7,7 +7,7 @@ import js.Dynamic.{global => g}
 import scala.concurrent.{Promise, Future}
 import org.scalajs.dom.{XMLHttpRequest, Event}
 
-object HttpClient {
+object HttpClient2 {
   val http = g.require("http").asInstanceOf[Http]
 
   def get(url: String): Future[XMLHttpRequest] = apply("GET", url)

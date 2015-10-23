@@ -12,6 +12,7 @@ lazy val root = (project in file(".")).
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.8.0",
     libraryDependencies += "net.databinder.dispatch" %% "dispatch-core" % "0.11.2",
     libraryDependencies += "akka.js" %%% "akkaactor" % "0.2-SNAPSHOT",
+    libraryDependencies += "org.webjars" % "request" % "2.36.1-1",
 //    jsDependencies += RuntimeDOM,
     skip in packageJSDependencies := false,
     persistLauncher in Compile := true,

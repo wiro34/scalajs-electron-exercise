@@ -1,6 +1,7 @@
 package jp.co.so_net.garoonify
 
 import jp.co.so_net.garoonify.garoon.GaroonClientActor
+import jp.co.so_net.garoonify.icewall.IceWallClientActor
 
 import scala.scalajs.js
 import js.Dynamic.{global => g}
@@ -13,9 +14,10 @@ import akka.util.Timeout
 import io.atom.electron._
 
 object Main extends js.JSApp {
+  val system = ActorSystem("tutorial-app")
+
   def main(): Unit = {
     val app = g.require("app").asInstanceOf[App]
-    val system = ActorSystem("tutorial-app")
 
     // Report crashes to our server.
     g.require("crash-reporter").start()
@@ -62,4 +64,8 @@ object Main extends js.JSApp {
       )
     })
   }
+}
+
+object Akka {
+  def system: ActorSystem = Main.system
 }

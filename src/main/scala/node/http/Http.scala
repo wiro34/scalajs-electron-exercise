@@ -13,13 +13,17 @@ trait Http extends js.Object {
 
 
 case class RequestOption(host: String,
-                         hostname: Option[String] = None,
                          port: Int = 80,
-                         localAddress: String = "0.0.0.0",
                          method: String = "GET",
-                         path: String = "/",
-                         headers: RequestHeaders = RequestHeaders(),
-                         auth: Option[String] = None)
+                         path: String = "/")
+//case class RequestOption(host: String,
+//                         hostname: Option[String] = None,
+//                         port: Int = 80,
+//                         localAddress: String = "0.0.0.0",
+//                         method: String = "GET",
+//                         path: String = "/",
+//                         headers: RequestHeaders = RequestHeaders(),
+//                         auth: Option[String] = None)
 
 case class RequestHeaders(contentType: String = "text/plain")
 

@@ -4,6 +4,7 @@ import java.util.Date
 
 import akka.actor.{ActorRef, Actor}
 import jp.co.so_net.garoonify.garoon.GaroonActorProtocol
+import jp.co.so_net.garoonify.icewall.IceWallClient
 
 object ScheduledActorProtocol {
 
@@ -26,7 +27,7 @@ class ScheduledActor(garoonClient: ActorRef) extends Actor {
     case Update(target) =>
       println("update " + target)
       garoonClient ! TakeSchedule(new Date(2015, 10, 26))
-      icewall.Client.login("test", "test")
+      IceWallClient.login("test", "test")
 
     case Schedule(interval) =>
       println("Scheduled!")

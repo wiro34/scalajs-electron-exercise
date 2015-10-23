@@ -1,16 +1,78 @@
 package jp.co.so_net.garoonify.icewall
 
-import jp.co.so_net.garoonify.util.HttpClient
+import akka.actor.{Props, Actor}
+import jp.co.so_net.garoonify.Akka
+import node.http.{RequestOption, Http}
 
+import scala.concurrent.Future
+import scala.scalajs.js
+import js.Dynamic.{global => g}
 
-object Client {
-  def login(username: String, password: String) = {
-    HttpClient.get("")
-//    val httpClient = new HttpClient
-//    val response: Response = httpClient.get("http://www.google.com/")
-//    println(response.status)
-//    println(response.body.asString)
-//    val googleTop = Http(request OK as.String)
-//    println(googleTop())
+object HttpClientProtocol {
+
+  case class Respond(body: String)
+
+}
+
+trait HttpClient {
+  this: Actor =>
+
+  import HttpClientProtocol._
+
+  val http = g.require("http")
+
+  def get(url: String) = {
+    val buffer = new StringBuilder
+    http.get(url, (res: Response) => {
+      res.setEncoding("utf8")
+      res.on("data", (chunk: String) => buffer.append(chunk))
+      res.on("end", () => {
+        self ! Respond(buffer.mkString)
+      })
+    })
   }
+}
+
+@js.native
+trait Response extends js.Object {
+  def setEncoding(encoding: String): Unit = js.native
+
+  def on(event: String, callback: js.Function1[String, Any]): Unit = js.native
+
+  def on(event: String, callback: js.Function0[Any]): Unit = js.native
+}
+
+object IceWallProtocol {
+
+  case class Login(username: String, password: String)
+
+}
+
+class IceWallClientActor extends Actor with HttpClient {
+
+  import HttpClientProtocol._
+  import IceWallProtocol._
+
+  def receive = {
+    case Login(username, password) =>
+      get("http://www.google.co.jp/")
+
+    case Respond(body) =>
+      println("Respond!")
+      println(body)
+  }
+}
+
+object IceWallClient {
+
+  import IceWallProtocol._
+
+  val icewallActor = Akka.system.actorOf(Props(classOf[IceWallClientActor]))
+
+  def login(username: String, password: String) = icewallActor ! Login(username, password)
+
+}
+
+@js.native
+trait Request extends js.Object {
 }
