@@ -26,6 +26,7 @@ class ScheduledActor(garoonClient: ActorRef) extends Actor {
     case Update(target) =>
       println("update " + target)
       garoonClient ! TakeSchedule(new Date(2015, 10, 26))
+      icewall.Client.login("test", "test")
 
     case Schedule(interval) =>
       println("Scheduled!")
